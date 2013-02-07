@@ -1,7 +1,15 @@
-<h1>Your name demo</h1>
-<div>
-  <label for="name">Name: </label>
-  <input type="text" ng-model="yourName" placeholder="Enter name here">
-  <hr />
-  Hello {{yourName}}!
+<h2>Todo</h2>
+<div ng-controller="TodoCtrl">
+  <span>{{remaining()}} of {{todos.length}} remaining</span> [<a href="" ng-click="archive()">Archive</a>]
+
+  <ul class="unstyled">
+    <li ng-repeat="todo in todos">
+      <input type="checkbox" ng-model="todo.done" />
+      <span class="done-{{todo.done}}">{{todo.text}}</span>
+    </li>
+  </ul>
+  <form ng-submit="addTodo()">
+    <input type="text" ng-model="todoText" size="30" placeholder="Add new todo here" />
+    <input type="submit" class="btn btn-primary" value="Add">
+  </form>
 </div>
