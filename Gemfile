@@ -18,8 +18,8 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'angular-rails'
 end
+gem 'angular-rails'
 
 gem 'jquery-rails'
 
