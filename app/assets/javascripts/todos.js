@@ -24,11 +24,17 @@ TodoCtrl = ['$scope', function($scope){
     });
   }
 
+  $scope.validInput = function(){
+    return $scope.todoText.toString().length > 0;
+  }
+
   $scope.addTodo = function(){
-    $scope.todos.push({
-      text: $scope.todoText,
-      done: false
-    });
-    $scope.todoText = '';
+    if($scope.validInput()){
+      $scope.todos.push({
+        text: $scope.todoText,
+        done: false
+      });
+      $scope.todoText = '';
+    }
   }
 }];
