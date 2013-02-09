@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <title>AngularTryout</title>
+  <%= stylesheet_link_tag    'application', :media => "all" %>
+  <%= javascript_include_tag "lib", 'jme_forum' %>
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+    body{
+      background: #000;
+      color: #999;
+      font-family: 'Helvetica Neue';
+    }
+    a, a:visited{
+      color: #006699;
+      text-decoration: none;
+    }
+    a:hover{ text-decoration: underline; }
+    .fetching{ opacity: 0.5; }
+    ul{-webkit-transition: opacity 0.20s}
+    ul.unstyled{ list-style-type: none;margin:0;padding:0; }
+    li{padding: 0.5em 1em; -webkit-transition: background-color .2s}
+    li:hover{
+      background:#333;
+    }
+    .avatar{ -webkit-transition: all 500ms cubic-bezier(0.165, 0.84, 0.44, 1); }
+    .avatar:hover{
+      -webkit-transform: scale(10) rotate(3deg) translate(4px,4px);
+    }
+    button{ background: orange;color:white; border: 1px solid orangered; font-size: inherit;padding:.25em 1em; }
+
+  </style>
+</head>
+<body>
+<div ng-app>
+  <div ng-controller="ForumController" ng-init="update()">
+    There are {{topics.length}} topics in the latest post section.
+
+    <ul class="unstyled" ng-class="status">
+      <li ng-repeat="topic in topics">
+        <div><a href="{{topic.permalink}}" target="_blank" style="font-weight: bold">{{topic.title}}</a></div>
+        <img ng-src="{{topic.avatar_url}}" style="max-height:16px;" class="avatar" /> {{topic.author}}
+      </li>
+    </ul>
+
+    <button ng-click="update()" ng-disabled="status != 'idle'">Update</button>
+    <div>
+      Status: {{status}}
+    </div>
+  </div>
+</div>
+</body>
+</html>
